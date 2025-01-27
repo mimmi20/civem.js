@@ -1,6 +1,6 @@
 {
   "name": "civem",
-  "version": "0.0.7",
+  "version": "0.0.0",
   "title": "CIVEM",
   "author": {
     "name": "Hannu Leinonen",
@@ -11,48 +11,48 @@
     {
       "type": "MIT",
       "url": "http://www.opensource.org/licenses/mit-license.php"
-    },
-    {
-      "type": "GPL",
-      "url": "http://www.gnu.org/licenses/gpl.html"
     }
   ],
   "description": "Custom Input Validation Error Messages",
-  "keywords": [
-    "custom", 
-    "input", 
-    "validation", 
-    "error", 
-	"messages",
-    "validate", 
-    "form", 
-	"message",
-	"translate",
-	"translation",
-	"i18n",
-	"internationalization",
-	"html5"
-  ],
-  "homepage": "http://github.com/javanto/civem.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/javanto/civem.js.git"
-  },
-  "files": [
-    "dist/{{= it.name}}.js", 
-    "dist/{{= it.name}}.min.js"
-  ],
-  "build": {
-    "directory": "dist",
-    "final_name": "{{= it.name}}",
-    "unique_name": "{{= it.name}}-{{= it.version}}"
+  "type": "module",
+  "scripts": {
+    "prettier": "prettier --config prettier.config.mjs --check src/*.mjs eslint.config.mjs prettier.config.mjs",
+    "prettier-fix": "prettier --config prettier.config.mjs --write src/*.mjs eslint.config.mjs prettier.config.mjs",
+    "eslint": "eslint . --config eslint.config.mjs",
+    "eslint-fix": "eslint . --config eslint.config.mjs --fix"
   },
   "devDependencies": {
-    "dot": "^1.0.3",
-    "gits": "^0.1.8",
-    "needle": "^1.1.0",
-    "node-fs": "^0.1.7",
-    "read": "^1.0.7",
-    "uglify-js": "^2.7.1"
+    "@eslint/js": "^9.19.0",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "prettier": "^3.4.2",
+    "prettier-eslint": "^16.3.0",
+    "typescript-eslint": "^8.21.0"
+  },
+  "engines": {
+    "node": "^20.9.0 || >= 22.0.0"
+  },
+  "keywords": [
+    "custom",
+    "input",
+    "validation",
+    "error",
+    "messages",
+    "validate",
+    "form",
+    "message",
+    "translate",
+    "translation",
+    "i18n",
+    "internationalization",
+    "html5"
+  ],
+  "main": "src/civem.mjs",
+  "homepage": "http://github.com/mimmi20/civem.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mimmi20/civem.js.git"
   }
 }
