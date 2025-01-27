@@ -66,7 +66,7 @@ export function initValidation(formElement) {
     return;
   }
 
-  if (formElement.tagName.toUpperCase() === 'SELECT' || formElement.type.toUpperCase() === 'RADIO' || formElement.type.toUpperCase() === 'CHECKBOX') {
+  if (formElement.tagName.toUpperCase() === 'SELECT' || formElement.type.toUpperCase() === 'RADIO' || formElement.type.toUpperCase() === 'CHECKBOX' || formElement.type.toUpperCase() === 'FILE') {
     formElement.onchange = getInputHandler(formElement.onchange);
   } else {
     formElement.oninput = getInputHandler(formElement.oninput);
