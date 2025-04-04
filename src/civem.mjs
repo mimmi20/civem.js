@@ -1,22 +1,26 @@
 /* global document, window */
 
+function handleValidEvent(event) {
+  if (event.target.type.toUpperCase() === 'RADIO') {
+    const radioGroup = document.getElementsByName(event.target.name);
+
+    radioGroup.forEach((radio) => {
+      radio.setCustomValidity('');
+    });
+  } else {
+    event.target.setCustomValidity('');
+  }
+
+  event.target.checkValidity();
+}
+
 export function getInputHandler(inputCallback) {
   return function (event) {
-    if (event.target.type.toUpperCase() === 'RADIO') {
-      const radioGroup = document.getElementsByName(event.target.name);
-
-      radioGroup.forEach((radio) => {
-        radio.setCustomValidity('');
-      });
-    } else {
-      event.target.setCustomValidity('');
-    }
+    handleValidEvent(event);
 
     if (inputCallback) {
       inputCallback(event);
     }
-
-    event.target.checkValidity();
   };
 }
 
@@ -24,6 +28,12 @@ export function getInvalidHandler(invalidCallback) {
   return function (event) {
     const element = event.target;
     const { validity } = element;
+
+    if (validity.valid) {
+      handleValidEvent(event);
+      return;
+    }
+
     const suffix = validity.valueMissing
       ? 'value-missing'
       : validity.typeMismatch
