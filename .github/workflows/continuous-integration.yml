@@ -23,9 +23,9 @@ jobs:
   validate:
     name: "Validate Project"
 
-    uses: "mimmi20/ci/.github/workflows/validate.yml@master"
+    uses: "mimmi20/ci/.github/workflows/validate-all.yml@master"
     with:
-      extensions: "ctype, curl, dom, iconv, intl, mbstring, simplexml, tokenizer, xml, xmlwriter"
+      extensions: "ctype, curl, dom, fileinfo, iconv, intl, mbstring, simplexml, tokenizer, xml, xmlwriter"
       ini-values: "opcache.enable=1, opcache.fast_shutdown=0, zend.assertions=1, assert.exception=On, intl.default_locale=de, intl.use_exceptions=1, zend.exception_ignore_args=0"
       composer-options: "--optimize-autoloader --prefer-dist --prefer-stable -v"
       skip-validate-composer: true
@@ -41,9 +41,9 @@ jobs:
 
     needs: "validate"
 
-    uses: "mimmi20/ci/.github/workflows/install.yml@master"
+    uses: "mimmi20/ci/.github/workflows/install-node.yml@master"
     with:
-      extensions: "ctype, curl, dom, iconv, intl, mbstring, simplexml, tokenizer, xml, xmlwriter"
+      extensions: "ctype, curl, dom, fileinfo, iconv, mbstring, intl, simplexml, tokenizer, xml, xmlwriter"
       ini-values: "opcache.enable=1, opcache.fast_shutdown=0, zend.assertions=1, assert.exception=On, intl.default_locale=de, intl.use_exceptions=1, zend.exception_ignore_args=0"
       composer-options: "--optimize-autoloader --prefer-dist --prefer-stable -v"
       skip-php-install: true
@@ -67,7 +67,7 @@ jobs:
 
     needs: "install"
 
-    uses: "mimmi20/ci/.github/workflows/analytics.yml@master"
+    uses: "mimmi20/ci/.github/workflows/analytics-node.yml@master"
     with:
       extensions: "ctype, curl, dom, fileinfo, iconv, intl, mbstring, simplexml, tokenizer, xml, xmlwriter"
       ini-values: "opcache.enable=1, opcache.fast_shutdown=0, zend.assertions=1, assert.exception=On, intl.default_locale=de, intl.use_exceptions=1, zend.exception_ignore_args=0"
@@ -93,7 +93,7 @@ jobs:
 #
 #    needs: "analytics"
 #
-#    uses: "mimmi20/ci/.github/workflows/test.yml@master"
+#    uses: "mimmi20/ci/.github/workflows/test-node.yml@master"
 #    with:
 #      extensions: "ctype, dom, fileinfo, intl, simplexml, tokenizer, xml, xmlwriter"
 #      ini-values: "opcache.enable=1, opcache.fast_shutdown=0, zend.assertions=1, assert.exception=On, intl.default_locale=de, intl.use_exceptions=1, zend.exception_ignore_args=0"
@@ -105,10 +105,16 @@ jobs:
 #      skip-phpunit: true
 #      skip-vitest: false
 #      skip-stryker: true
+#      skip-nasm-install: true
+#      skip-libimagequant-install: true
+#      skip-libpng-install: true
+#      skip-librabbitmq-install: true
+#      skip-libgif-install: true
 #      upload-codecov: true
 #      upload-codeclimate: true
 #      upload-coveralls: true
 #      upload-flag: ""
+#      use-phpstan: false
 #    secrets:
 #      ENV_CODECLIMATE_API_KEY: ${{ secrets.CODECLIMATE_API_KEY }}
 #      ENV_CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
